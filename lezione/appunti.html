@@ -1,0 +1,36 @@
+<h1 id="session">Session</h1>
+<h2 id="cookies">Cookies:</h2>
+<ul>
+<li>I cookie sono contenuti in file nel browser del client,</li>
+<li>I cookie possono essere impostati per scadere in una determinata data e ora, oppure possono essere impostati come “session cookies” che scadono quando il browser viene chiuso.</li>
+<li>I cookie possono essere letti dal client e dal server, il che significa che le informazioni contenute nei cookie possono essere accessibili ai malintenzionati, in particolare se il cookie non è protetto da flag come HttpOnly e Secure.</li>
+<li>I cookie sono spesso utilizzati per il tracciamento dell’utente e per la pubblicità mirata.</li>
+</ul>
+<p><a href="https://www.php.net/manual/en/function.setcookie.php">Documentazione PHP <code>setcookie()</code></a></p>
+<h2 id="tag-di-sicurezza-dei-cookies">Tag di sicurezza dei cookies</h2>
+<p><strong>Secure</strong>: Quando l’etichetta “secure” viene impostata su un cookie, viene indicato al browser di inviare il cookie solo su una connessione sicura HTTPS. Ciò significa che il cookie può essere inviato al server solo se la richiesta viene effettuata su una connessione sicura. Ciò aiuta a prevenire che il cookie venga intercettato o manomesso da un attaccante che sta intercettando la rete.</p>
+<p><strong>HttpOnly</strong>: Quando l’etichetta “httponly” viene impostata su un cookie, viene indicato al browser di impedire agli script lato client di accedere al cookie. Ciò significa che il cookie può essere accessibile solo dal server, non da JavaScript o altri codici lato client. Ciò aiuta a prevenire gli attacchi di scripting tra siti (XSS), in cui un attaccante inserisce codice dannoso in una pagina web per rubare dati sensibili, come i cookie di sessione. </p>
+<p>Per impostare i parametri di default dei cookie: <a href="https://www.php.net/manual/en/function.session-set-cookie-params.php">Documentazione PHP <code>session_get_cookie_params()</code></a></p>
+<h3 id="dove-vengono-salvati">Dove vengono salvati</h3>
+<ul>
+<li><strong>Firefox (Linux)</strong>: <code>/home/&lt;user&gt;/.mozilla/firefox/&lt;profile-folder&gt;/cookies.sqlite</code></li>
+<li><strong>Firefox (Windows)</strong>: <code>%APPDATA%\Mozilla\Firefox\Profiles\&lt;profile folder&gt;\cookies.sqlite</code></li>
+</ul>
+<p>Nel mio caso: <code>/home/oxio2/.mozilla/firefox/bcjt4i0r.default-esr</code></p>
+<h2 id="sessioni">Sessioni:</h2>
+<ul>
+<li>Le sessioni sono un meccanismo di gestione dello stato delle applicazioni web che memorizza le informazioni dell’utente lato server.</li>
+<li>Le sessioni utilizzano un identificatore di sessione univoco (solitamente un cookie) per mantenere lo stato dell’utente tra le richieste. (<code>PHPSESSID</code>)</li>
+<li>Le sessioni sono in genere più sicure dei cookie, poiché le informazioni memorizzate nella sessione non sono accessibili dal client.</li>
+<li>Le sessioni hanno una durata predefinita e possono essere distrutte dal server quando non sono più necessarie.</li>
+<li>Le sessioni possono essere crittografate per proteggere le informazioni degli utenti da eventuali attacchi.</li>
+</ul>
+<h3 id="come-funzionano-le-sessioni-in-php">Come funzionano le sessioni in PHP</h3>
+<ul>
+<li>Quando viene chiamato il metodo <code>"session_start()"</code> viene creata una sessione e un ID di sessione associato</li>
+<li>Viene memorizzato nel client il cookie <code>PHPSESSID</code> che contiene l’id di sessione appena creato</li>
+<li>Il server utilizza il cookie <code>PHPSESSID</code> e l’id memorizzato in memoria per associare una</li>
+</ul>
+<p><a href="https://www.php.net/manual/en/function.session-start.php">Documentazione PHP <code>session_start()</code></a></p>
+<hr />
+<p>In generale, i cookie sono più utilizzati per la memorizzazione di piccole quantità di dati, mentre le sessioni sono utilizzate per memorizzare dati più complessi e sensibili. Tuttavia, sia i cookie che le sessioni presentano alcune vulnerabilità di sicurezza e devono essere gestiti in modo adeguato per evitare attacchi informatici.</p>
